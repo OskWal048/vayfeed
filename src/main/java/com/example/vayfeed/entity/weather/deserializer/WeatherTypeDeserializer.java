@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.IntNode;
+import com.fasterxml.jackson.databind.node.NumericNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 import org.springframework.boot.jackson.JsonComponent;
 
@@ -18,7 +19,7 @@ import java.util.List;
 @JsonComponent
 public class WeatherTypeDeserializer extends JsonDeserializer<List<WeatherType>> {
     @Override
-    public List<WeatherType> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    public List<WeatherType> deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
         WeatherType weatherType;
         List<WeatherType> types = new ArrayList<>();
 
@@ -26,7 +27,7 @@ public class WeatherTypeDeserializer extends JsonDeserializer<List<WeatherType>>
 
         for(JsonNode node : arrayNode){
             weatherType = new WeatherType();
-            IntNode typeId = (IntNode) node.get("id");
+            NumericNode typeId = (NumericNode) node.get("id");
             TextNode name = (TextNode) node.get("main");
             TextNode description = (TextNode) node.get("description");
             TextNode iconName = (TextNode) node.get("icon");

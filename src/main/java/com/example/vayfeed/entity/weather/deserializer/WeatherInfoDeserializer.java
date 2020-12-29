@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.DoubleNode;
 import com.fasterxml.jackson.databind.node.IntNode;
+import com.fasterxml.jackson.databind.node.NumericNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 import org.springframework.boot.jackson.JsonComponent;
 
@@ -19,15 +20,15 @@ import java.io.IOException;
 public class WeatherInfoDeserializer extends JsonDeserializer<WeatherInfo> {
 
     @Override
-    public WeatherInfo deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    public WeatherInfo deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
 
         WeatherInfo weatherInfo = new WeatherInfo();
 
         TreeNode treeNode = jsonParser.getCodec().readTree(jsonParser);
-        DoubleNode lat = (DoubleNode) treeNode.get("lat");
-        DoubleNode lon = (DoubleNode) treeNode.get("lon");
+        NumericNode lat = (NumericNode) treeNode.get("lat");
+        NumericNode lon = (NumericNode) treeNode.get("lon");
         TextNode timezone = (TextNode) treeNode.get("timezone");
-        IntNode timezoneOffset = (IntNode) treeNode.get("timezone_offset");
+        NumericNode timezoneOffset = (NumericNode) treeNode.get("timezone_offset");
 
         JsonNode currentWeatherReading = (JsonNode) treeNode.get("current");
 

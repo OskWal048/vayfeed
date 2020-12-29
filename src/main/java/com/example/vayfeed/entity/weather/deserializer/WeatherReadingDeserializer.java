@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.DoubleNode;
 import com.fasterxml.jackson.databind.node.IntNode;
+import com.fasterxml.jackson.databind.node.NumericNode;
 import org.springframework.boot.jackson.JsonComponent;
 
 import java.io.IOException;
@@ -17,21 +18,21 @@ import java.util.List;
 @JsonComponent
 public class WeatherReadingDeserializer extends JsonDeserializer<WeatherReading> {
     @Override
-    public WeatherReading deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    public WeatherReading deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException{
         WeatherReading weatherReading = new WeatherReading();
 
         TreeNode treeNode = jsonParser.getCodec().readTree(jsonParser);
 
-        IntNode readingUnixTime = (IntNode) treeNode.get("dt");
-        IntNode sunriseUnixTime = (IntNode) treeNode.get("sunrise");
-        IntNode sunsetUnixTime = (IntNode) treeNode.get("sunset");
-        DoubleNode tempKelvin = (DoubleNode) treeNode.get("temp");
-        DoubleNode perceivedTempKelvin = (DoubleNode) treeNode.get("feels_like");
-        IntNode pressure = (IntNode) treeNode.get("pressure");
-        IntNode humidity = (IntNode) treeNode.get("humidity");
-        IntNode cloudiness = (IntNode) treeNode.get("clouds");
-        DoubleNode uvi = (DoubleNode) treeNode.get("uvi");
-        DoubleNode windSpeed = (DoubleNode) treeNode.get("wind_speed");
+        NumericNode readingUnixTime = (NumericNode) treeNode.get("dt");
+        NumericNode sunriseUnixTime = (NumericNode) treeNode.get("sunrise");
+        NumericNode sunsetUnixTime = (NumericNode) treeNode.get("sunset");
+        NumericNode tempKelvin = (NumericNode) treeNode.get("temp");
+        NumericNode perceivedTempKelvin = (NumericNode) treeNode.get("feels_like");
+        NumericNode pressure = (NumericNode) treeNode.get("pressure");
+        NumericNode humidity = (NumericNode) treeNode.get("humidity");
+        NumericNode cloudiness = (NumericNode) treeNode.get("clouds");
+        NumericNode uvi = (NumericNode) treeNode.get("uvi");
+        NumericNode windSpeed = (NumericNode) treeNode.get("wind_speed");
 
         JsonNode weatherType = (JsonNode) treeNode.get("weather");
 
