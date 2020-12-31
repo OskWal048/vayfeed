@@ -1,7 +1,7 @@
 package com.example.vayfeed.testcontroller;
 
 import com.example.vayfeed.entity.weather.WeatherInfo;
-import com.example.vayfeed.service.WeatherInfoService;
+import com.example.vayfeed.service.weather.WeatherInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

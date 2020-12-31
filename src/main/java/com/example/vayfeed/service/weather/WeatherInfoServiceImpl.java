@@ -1,19 +1,19 @@
-package com.example.vayfeed.service;
+package com.example.vayfeed.service.weather;
 
 import com.example.vayfeed.entity.weather.WeatherInfo;
 import com.example.vayfeed.repository.WeatherInfoRepository;
+import com.example.vayfeed.service.weather.WeatherInfoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
 @Service
-public class WeatherInfoServiceImpl implements WeatherInfoService{
+public class WeatherInfoServiceImpl implements WeatherInfoService {
 
     private final WeatherInfoRepository weatherInfoRepository;
     private final ObjectMapper objectMapper;
@@ -27,7 +27,7 @@ public class WeatherInfoServiceImpl implements WeatherInfoService{
     @Override
     public WeatherInfo readFromApi() throws IOException {
 
-        WeatherInfo weatherInfo = new WeatherInfo();
+        WeatherInfo weatherInfo;
 
         URL url = new URL("http://api.openweathermap.org/data/2.5/onecall?lat=50.26&lon=19.03&appid=9edc3270dff940ef79d2a7fffa87b812&exclude=minutely,hourly,daily");
 

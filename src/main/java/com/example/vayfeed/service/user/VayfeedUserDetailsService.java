@@ -1,4 +1,4 @@
-package com.example.vayfeed.service;
+package com.example.vayfeed.service.user;
 
 import com.example.vayfeed.entity.user.User;
 import com.example.vayfeed.repository.UserRepository;

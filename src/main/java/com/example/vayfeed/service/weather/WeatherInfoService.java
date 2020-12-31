@@ -1,4 +1,4 @@
-package com.example.vayfeed.service;
+package com.example.vayfeed.service.weather;
 
 import com.example.vayfeed.entity.weather.WeatherInfo;
 

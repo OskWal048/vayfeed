@@ -1,6 +1,6 @@
-package com.example.vayfeed.entity.weather.scheduler;
+package com.example.vayfeed.service.weather;
 
-import com.example.vayfeed.service.WeatherInfoService;
+import com.example.vayfeed.service.weather.WeatherInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

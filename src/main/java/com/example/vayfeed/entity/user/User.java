@@ -24,6 +24,8 @@ public class User implements UserDetails {
 
     private List<Authority> authorities;
 
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;

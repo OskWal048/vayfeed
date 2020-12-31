@@ -1,6 +1,6 @@
 package com.example.vayfeed.security;
 
-import com.example.vayfeed.service.VayfeedUserDetailsService;
+import com.example.vayfeed.service.user.VayfeedUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
