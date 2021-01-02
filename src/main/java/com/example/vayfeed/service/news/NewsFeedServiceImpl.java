@@ -27,13 +27,39 @@ public class NewsFeedServiceImpl implements NewsFeedService {
     }
 
     @Override
-    public NewsFeed readFromApi() throws IOException, FeedException {
+    public NewsFeed readFromRssFeed() throws IOException, FeedException {
 
         NewsPiece newsPiece;
         NewsFeed newsFeed = new NewsFeed();
         List<NewsPiece> newsPieceList = new ArrayList<>();
 
         URL url = new URL("https://www.nasa.gov/rss/dyn/breaking_news.rss");
+        SyndFeedInput input = new SyndFeedInput();
+        SyndFeed feed = input.build(new XmlReader(url));
+
+        List<SyndEntry> entries = feed.getEntries();
+
+        for(SyndEntry e : entries){
+            newsPiece = new NewsPiece();
+            newsPiece.setTitle(e.getTitle());
+            newsPiece.setDescription(e.getDescription().getValue());
+            newsPiece.setLink(e.getLink());
+            newsPiece.setPubDate(e.getPublishedDate());
+
+            newsPieceList.add(newsPiece);
+        }
+        newsFeed.setNewsPieces(newsPieceList);
+
+        return newsFeed;
+    }
+
+    @Override
+    public NewsFeed readFromRssFeed(String rssUrl) throws IOException, FeedException {
+        NewsPiece newsPiece;
+        NewsFeed newsFeed = new NewsFeed();
+        List<NewsPiece> newsPieceList = new ArrayList<>();
+
+        URL url = new URL(rssUrl);
         SyndFeedInput input = new SyndFeedInput();
         SyndFeed feed = input.build(new XmlReader(url));
 

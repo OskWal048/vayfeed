@@ -9,7 +9,8 @@ import java.io.IOException;
 import java.util.List;
 
 public interface NewsFeedService {
-    NewsFeed readFromApi() throws IOException, FeedException;
+    NewsFeed readFromRssFeed() throws IOException, FeedException;
+    NewsFeed readFromRssFeed(String rssUrl) throws IOException, FeedException;
     void save(NewsFeed newsFeed);
     List<NewsFeed> findAll();
 }

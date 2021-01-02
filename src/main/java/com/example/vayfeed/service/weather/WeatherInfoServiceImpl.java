@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.List;
 
@@ -30,6 +32,30 @@ public class WeatherInfoServiceImpl implements WeatherInfoService {
         WeatherInfo weatherInfo;
 
         URL url = new URL("http://api.openweathermap.org/data/2.5/onecall?lat=50.26&lon=19.03&appid=9edc3270dff940ef79d2a7fffa87b812&exclude=minutely,hourly,daily");
+
+        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+        connection.setRequestMethod("GET");
+        connection.connect();
+        int responseCode = connection.getResponseCode();
+
+        if(responseCode != 200)
+            throw new RuntimeException("Http Response Code " + responseCode);
+        else{
+            weatherInfo = objectMapper.readValue(url, WeatherInfo.class);
+        }
+
+        return weatherInfo;
+    }
+
+    @Override
+    public WeatherInfo readFromApi(double lat, double lon) throws IOException {
+        WeatherInfo weatherInfo;
+
+        URL url = new URL("http://api.openweathermap.org/data/2.5/onecall?lat="
+                                +lat
+                                +"&lon="
+                                +lon
+                                +"&appid=9edc3270dff940ef79d2a7fffa87b812&exclude=minutely,hourly,daily");
 
         HttpURLConnection connection = (HttpURLConnection)url.openConnection();
         connection.setRequestMethod("GET");

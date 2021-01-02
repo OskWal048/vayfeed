@@ -1,5 +1,8 @@
 package com.example.vayfeed.entity.user;
 
+import com.example.vayfeed.entity.news.NewsFeed;
+import com.example.vayfeed.entity.news.NewsPiece;
+import com.example.vayfeed.entity.weather.WeatherInfo;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +19,7 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    private String Username;
+    private String username;
 
     private String password;
 
@@ -24,7 +27,11 @@ public class User implements UserDetails {
 
     private List<Authority> authorities;
 
+    private UserParams userParams;
 
+    private List<WeatherInfo> weatherInfos;
+
+    private List<NewsPiece> newsFeed;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

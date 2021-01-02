@@ -31,7 +31,9 @@ public class VayfeedWebSecurityConfigurerAdapter extends WebSecurityConfigurerAd
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .authorizeRequests().anyRequest().permitAll()
+                .authorizeRequests()
+                .antMatchers("/user").permitAll()
+                .anyRequest().authenticated()
                 .and().httpBasic();
     }
 
