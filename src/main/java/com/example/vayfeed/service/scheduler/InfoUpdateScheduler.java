@@ -33,9 +33,8 @@ public class InfoUpdateScheduler {
         this.newsFeedService = newsFeedService;
     }
 
-    @Scheduled(cron = "0 0/1 * * * ?")
+    @Scheduled(cron = "0 0/5 * * * ?")
     public void updateInfo() throws IOException, FeedException {
-//        List<User> users = userRepository.findAll();
         List<User> users = userRepository.findAll();
 
         for(User user : users){

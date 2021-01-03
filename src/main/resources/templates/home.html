@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/vayfeedStylesheet.css}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, height=device-height">
+    <title>Vayfeed</title>
+</head>
+<body>
+
+<div class="container-fluid text-center">
+    <h1>Vayfeed</h1>
+    <p>Your daily assistant</p>
+    <div class="row">
+        <div class="col-sm-4" style="background-color:lavender">
+            <div class="row">Weather app spot</div>
+            <div class="row">Google calendar spot</div>
+        </div>
+        <div class="col-sm-8" style="height:200px">
+            <table class="table table-bordered table-striped newsTableStyle">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Story</th>
+                    <th>See the full story</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="newsPiece : ${newsPieces}">
+                    <td>
+                        <p th:text="${newsPiece.getTitle()}"/>
+                        <p th:text="${newsPiece.getDescription()}"/>
+                    </td>
+                    <td th:text="${newsPiece.getLink()}"/>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
